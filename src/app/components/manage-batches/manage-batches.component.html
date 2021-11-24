@@ -1,0 +1,139 @@
+<p>manage-batches works!</p>
+<!--
+<form [formGroup]="batchForm"> 
+            
+                
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label style="font-size: 17px;">BatchesName</mat-label>
+        
+              
+        <mat-select  class="form-control" formControlName="batchName">
+            <mat-option> morning </mat-option>
+            <mat-option> afternoon </mat-option>
+            <mat-option> evening </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <span style="color:red" *ngIf="batchName && batchName.invalid && batchName.touched">Batch Name is required</span>   
+  
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+
+</div>
+<input type="text" class="form-control" placeholder="coachName" aria-label="CoachName" aria-describedby="basic-addon1" class="form-control" formControlName="coachName">
+</div>
+<span style="color:red" *ngIf="coachName && coachName.invalid && coachName.touched">coachName is required</span>  
+
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+
+</div>
+<input type="time" class="form-control" placeholder="startTime" aria-label="StartTime" aria-describedby="basic-addon1">
+</div>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+
+</div>
+<input type="time" class="form-control" placeholder="endTime" aria-label="EndTime" aria-describedby="basic-addon1">
+</div>
+
+
+ <select name="sportsCategory" formControlName="sportsCategory">
+        <option value="INDOOR">indoor</option>
+        <option value="OUTDOOR">outdoor</option>
+    </select>
+
+
+
+      <div class="form-group">
+        <label>Membership Charge : </label>
+        <input type="text" id="membersCharge" name="membersCharge" formControlName="membersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['membersCharge'].hasError('required') && sportsForm.controls['membersCharge'].touched">Membership charge  is required</div>
+      </div>
+
+      <div class="form-group">
+        <label>Non Membership Charge : </label>
+        <input type="text" id="nonMembersCharge" name="nonMembersCharge" formControlName="nonMembersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['nonMembersCharge'].hasError('required') && sportsForm.controls['nonMembersCharge'].touched">Non Membership charge  is required</div>
+      </div>
+
+    <div *ngIf= "managers.length == 0 else elsePart">
+        <h2 style="color: red;">No Managers are Idel as of now</h2>
+        <button class="btn btn-success" type="submit" disabled>Submit</button>
+    </div>
+    <ng-template #elsePart>
+        <select name="managerId" formControlName="managerId" >
+          <option [value]="manager.userId" *ngFor="let manager of managers" >{{manager.userName}}</option>
+        </select>
+      <div class="error"  class="text-danger" *ngIf="sportsForm.controls['managerId'].hasError('required') && sportsForm.controls['managerId'].touched">Manager Name is required</div>
+      <button class="btn btn-success" type="submit">Submit</button>
+    </ng-template>
+
+
+
+-->
+
+
+<form [formGroup] = "batchForm" (ngSubmit)="addBatch(batchForm)">
+
+    <div class="form-group">
+        <label>Coach Name : </label>
+        <input type="text" id="coachName" name="coachName" formControlName="coachName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="batchForm.controls['coachName'].hasError('required') && batchForm.controls['coachName'].touched">Coach Name is required</div>
+    </div>
+
+    <select name="batchName" formControlName="batchName">
+        <option value="MORNING">morning</option>
+        <option value="AFTERNOON">afternoon</option>
+        <option value="EVENING">evening</option>
+    </select>
+
+        <div class="form-group">
+            <label>Start Time : </label>
+            <input type="time" id="startTime" formControlName="startTime" name="startTime" min="1:00" max="3:00" required>
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('required') && batchForm.controls['startTime'].touched">Start Time is required</div>
+            <div class="error" class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('min')">Time Frame not allowed</div>
+        </div>
+
+        <div class="form-group">
+            <label>End Time : </label>
+            <input type="time" id="endTime" formControlName="endTime" name="endTime" min="01:00" max="03:00" required>
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('required') && batchForm.controls['endTime'].touched">End Time is required</div>
+            <div class="error" class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('max')">Time Frame not allowed</div>
+        </div>
+
+        <div class="form-group">
+            <label>Batch Strength : </label>
+            <input type="text" id="batchStrength" name="batchStrength" formControlName="batchStrength" class="form-control">
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['batchStrength'].hasError('required') && batchForm.controls['batchStrength'].touched">Batch Strength is required</div>
+        </div>
+
+        <div class="form-group">
+            <label>Offers : </label>
+            <input type="text" id="offer" name="offer" formControlName="offer" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Discount Offered : </label>
+            <input type="text" id="discountOffered" name="discountOffered" formControlName="discountOffered" class="form-control">
+        </div>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+
+
+</form>
+
+<table>
+    <div *ngFor="let batch of batches">
+        <td>{{batch.batchName}}</td>
+        <td>{{batch.coachName}}</td>
+        <td>{{batch.batchStrength}}</td>
+        <td>{{batch.offer}}</td>
+        <td>{{batch.discountOffered}}</td>
+        <td>{{batch.startTime}}</td>
+        <td>{{batch.endTime}}</td>
+        <td>{{batch.sportsId.sportsName}}</td>
+        <td><button class="btn btn-primary" (click)="updateBatch(batch.batchId)" >Update</button></td>
+        <td><button class="btn btn-danger" (click)="deleteBatch(batch.batchId)" >Delete</button></td>
+    </div>
+</table>

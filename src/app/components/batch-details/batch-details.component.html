@@ -1,0 +1,40 @@
+<p>batch-details works!</p>
+<h2>You have selected {{sportsId}}</h2>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let batch of batches ">
+            <mat-card class="mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{batch.batchName}}
+                    </mat-card-title>
+                </mat-card-header>
+                <!--<img mat-card-image [src]="sport.image"> -->
+                <mat-card-content>
+                    <p>{{batch.batchStrength}}</p>
+                    <p>{{batch.coachName}}</p>
+                    <p>offer : {{batch.offer}}</p>
+                    <p>{{batch.discountOffered}}</p>
+                    <p>{{batch.startTime}}</p>
+                    <p>{{batch.endTime}}</p>
+                    <p>{{batch.sportsId.sportsName}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div *ngIf="batch.offer" else elsePart>
+                        <h2>Woohoo !!!!!!! we are having an offer going on</h2>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{batch.sportsId.membersCharge - batch.sportsId.membersCharge }}  </button>
+                        <br><br>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}} to {{batch.sportsId.nonMembersCharge - batch.sportsId.nonMembersCharge * 0.1  }}  </button>
+                    </div>
+
+                    <ng-template #elsePart>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} </button>
+                        <br><br>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}}</button>
+                    </ng-template>
+                    
+                </mat-card-actions>
+            </mat-card>
+        </div>
+     </div>
+</div>

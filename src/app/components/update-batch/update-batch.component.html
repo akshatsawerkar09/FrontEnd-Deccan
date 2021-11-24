@@ -1,0 +1,51 @@
+<p>update-batch works!</p>
+<form [formGroup] = "batchForm" (ngSubmit)="updateBatch(batchForm)">
+
+    <div class="form-group">
+        <label>Coach Name : </label>
+        <input type="text" id="coachName" name="coachName" formControlName="coachName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="batchForm.controls['coachName'].hasError('required') && batchForm.controls['coachName'].touched">Coach Name is required</div>
+    </div>
+
+    <select name="batchName" formControlName="batchName">
+        <option value="MORNING">morning</option>
+        <option value="AFTERNOON">afternoon</option>
+        <option value="EVENING">evening</option>
+    </select>
+
+        <div class="form-group">
+            <label>Start Time : </label>
+            <input type="time" id="startTime" formControlName="startTime" name="startTime" min="1:00" max="3:00" required>
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('required') && batchForm.controls['startTime'].touched">Start Time is required</div>
+            <div class="error" class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('min')">Time Frame not allowed</div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label>End Time : </label>
+            <input type="time" id="endTime" formControlName="endTime" name="endTime" min="01:00" max="03:00" required>
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('required') && batchForm.controls['endTime'].touched">End Time is required</div>
+            <div class="error" class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('max')">Time Frame not allowed</div>
+        </div>
+
+        <div class="form-group">
+            <label>Batch Strength : </label>
+            <input type="text" id="batchStrength" name="batchStrength" formControlName="batchStrength" class="form-control">
+            <div class="error"  class="text-danger" *ngIf="batchForm.controls['batchStrength'].hasError('required') && batchForm.controls['batchStrength'].touched">Batch Strength is required</div>
+        </div>
+
+        <div class="form-group">
+            <label>Offers : </label>
+            <input type="text" id="Offers" name="offers" formControlName="offers" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Discount Offered : </label>
+            <input type="text" id="discountOffered" name="discountOffered" formControlName="discountOffered" class="form-control">
+        </div>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+
+
+</form>

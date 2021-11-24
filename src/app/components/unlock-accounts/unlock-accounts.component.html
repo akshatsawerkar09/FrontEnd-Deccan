@@ -1,0 +1,10 @@
+<p>unlock-accounts works!</p>
+<table>
+    <tr *ngFor="let user of lockedAccounts">
+        <td>{{user.userName}}</td>
+        <td>{{user.userRole}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.phoneNumber}}</td>
+        <td><button class="btn btn-success" (click)="unlockAccount(user.userId)">Unlock Account</button></td>
+    </tr>
+</table>

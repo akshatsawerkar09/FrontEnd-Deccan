@@ -1,0 +1,19 @@
+.spacer{
+    flex : 1 1 auto;
+}
+
+.mat-toolbar{
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 3px;
+}
+
+a:hover , a:active{
+    color: powderblue;
+}
+
+@media(max-width : 950px) {
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}

@@ -1,0 +1,33 @@
+<p>update-sports works!</p>
+<h2>You have selected {{sportsId}}</h2>
+<form [formGroup] = "sportsForm" (ngSubmit)="updateSports(sportsForm)">
+
+    <div class="form-group">
+        <label>Sports Name : </label>
+        <input type="text" id="sportsName" name="sportsName" formControlName="sportsName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['sportsName'].hasError('required') && sportsForm.controls['sportsName'].touched">Sports Name is required</div>
+    </div>
+
+    <select name="sportsCategory" formControlName="sportsCategory">
+        <option value="INDOOR">indoor</option>
+        <option value="OUTDOOR">outdoor</option>
+    </select>
+
+      <div class="form-group">
+        <label>Membership Charge : </label>
+        <input type="text" id="membersCharge" name="membersCharge" formControlName="membersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['membersCharge'].hasError('required') && sportsForm.controls['membersCharge'].touched">Membership charge  is required</div>
+      </div>
+
+      <div class="form-group">
+        <label>Non Membership Charge : </label>
+        <input type="text" id="nonMembersCharge" name="nonMembersCharge" formControlName="nonMembersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['nonMembersCharge'].hasError('required') && sportsForm.controls['nonMembersCharge'].touched">Non Membership charge  is required</div>
+      </div>
+
+      <select name="managerId" formControlName="managerId" >
+        <option [value]="manager.userId" *ngFor="let manager of managers" >{{manager.userName}}</option>
+      </select>
+    <div class="error"  class="text-danger" *ngIf="sportsForm.controls['managerId'].hasError('required') && sportsForm.controls['managerId'].touched">Manager Name is required</div>
+    <button class="btn btn-success" type="submit">Submit</button>
+</form>

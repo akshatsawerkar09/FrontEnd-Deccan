@@ -1,0 +1,27 @@
+<button mat-raised-button color="primary" (click)="showIndoor()">Indoor</button>
+<button mat-raised-button color="primary" (click)="showOutdoor()">Outdoor</button>
+<button mat-raised-button color="primary" (click)="showAll()">Show All</button>
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let sport of sports ">
+            <mat-card class="mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{sport.sportsName}}
+                    </mat-card-title>
+                </mat-card-header>
+                <!--<img mat-card-image [src]="sport.image"> -->
+                <mat-card-content>
+                    <p>{{sport.sportsCategory}}</p>
+                    <p>{{sport.membersCharge}}</p>
+                    <p>{{sport.nonMembersCharge}}</p>
+                    <p>Managed By :-  {{sport.managerId.userName}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="showBatch(sport.sportsId)" color="primary">Explore Batches</button>
+                    </mat-card-actions>
+            </mat-card>
+        </div>
+     </div>
+</div>
