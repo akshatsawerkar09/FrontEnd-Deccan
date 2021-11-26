@@ -21,8 +21,12 @@ export class SportsComponent implements OnInit {
           console.log(this.sports);
       }
     )
+
+    console.log(this.user);
   }
 
+  user = JSON.parse(sessionStorage['user']);
+  
 
 
   indoor!: any[];
@@ -33,19 +37,22 @@ export class SportsComponent implements OnInit {
 
   showIndoor(): void
   {
-    this.indoor = this.sports.filter(sport => sport.sportsCategory == "INDOOR");
+    this.indoor = this.sports.filter(sport => sport.sportsCategory === "INDOOR");
+    console.log(this.indoor);
      this.sports = this.indoor;
   }
 
   showOutdoor():void
   {
-    this.outdoor = this.sports.filter(sport => sport.sportsCategory == "OUTDOOR");
+    this.outdoor = this.sports.filter(sport => sport.sportsCategory === "OUTDOOR");
+    console.log(this.outdoor);
     this.sports = this.outdoor;
   }
 
   showAll():void
   {
-    this.all  = this.sports.filter(sports => sports.sportsCategory = "INDOOR || OUTDOOR");
+    this.all  = this.sports.filter(sports => sports.sportsCategory === "INDOOR || OUTDOOR");
+    console.log(this.all);
     this.sports = this.all;
     
   }

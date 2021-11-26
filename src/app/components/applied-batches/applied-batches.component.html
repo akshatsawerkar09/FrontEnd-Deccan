@@ -1,3 +1,4 @@
+<!--
 <div class="row">
     <div class="col-sm-2">
         <app-side-nav></app-side-nav>
@@ -6,25 +7,24 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
           
-              <!-- ID Column -->
+          
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
               </ng-container>
-          
-              <!-- Progress Column -->
+       
               <ng-container matColumnDef="progress">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
                 <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
               </ng-container>
           
-              <!-- Name Column -->
+    
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
                 <td mat-cell *matCellDef="let row"> {{row.name}} </td>
               </ng-container>
           
-              <!-- Fruit Column -->
+           
               <ng-container matColumnDef="fruit">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
                 <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
@@ -33,7 +33,7 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           
-              <!-- Row shown when there is no matching data. -->
+           
               <tr class="mat-row" *matNoDataRow>
 
               </tr>
@@ -44,3 +44,16 @@
     </div>
 </div>
 
+-->
+<table>
+  <tr *ngFor="let appliedBatch of appliedBatches">
+      <span *ngIf="appliedBatch.enrolledStatus == 0">
+          <td>{{appliedBatch.sportsId.sportsName}}</td>
+          <td>{{appliedBatch.batchId.batchName}} </td>
+          <td>{{appliedBatch.batchId.coachName}} </td>
+          <td>{{appliedBatch.batchId.startTime}} </td>
+          <td>{{appliedBatch.batchId.endTime}} </td>
+          <td>{{appliedBatch.sportsId.managerId.userName}} </td>
+      </span>
+  </tr>
+</table>

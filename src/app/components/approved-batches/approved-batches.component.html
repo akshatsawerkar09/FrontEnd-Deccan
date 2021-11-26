@@ -1,0 +1,19 @@
+<p>approved-batches works!</p>
+<table>
+    <tr *ngFor="let approvedBatch of approvedBatches">
+        <span *ngIf="approvedBatch.enrolledStatus == 1">
+            <td>{{approvedBatch.sportsId.sportsName}}</td>
+            <td>{{approvedBatch.batchId.batchName}} </td>
+            <td>{{approvedBatch.batchId.coachName}} </td>
+            <td>{{approvedBatch.batchId.startTime}} </td>
+            <td>{{approvedBatch.batchId.endTime}} </td>
+            <td>{{approvedBatch.sportsId.managerId.userName}} </td>
+            <span *ngIf="approvedBatch.paymentStatus == 0; else elsePart">
+                <button class="btn btn-primary" (click)="payment(approvedBatch.enrolledId)">Pay Now</button>
+            </span>
+            <ng-template #elsePart>
+                <td>Payment Done</td>
+            </ng-template>
+        </span>
+    </tr>
+  </table>

@@ -31,15 +31,17 @@ export class ManageBatchesComponent implements OnInit {
       data =>{
         console.log(data);
         this.sports = data;
+
+        this._batchService.getManagerBatches(this.sports.sportsId).subscribe(
+          data => {
+            console.log(data);
+            this.batches = data;
+          }
+        )
       }
     )
 
-      this._batchService.getAllBatches(this.sportsId).subscribe(
-        data => {
-          console.log(data);
-          this.batches = data;
-        }
-      )
+      
   }
 
   batchForm= new FormGroup({

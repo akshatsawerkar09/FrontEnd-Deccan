@@ -6,8 +6,8 @@ export interface IEnrolledSports{
     enrolledId : number;
     enrolledStatus : number;
     fees : number;
-    user : IUser;
-    sport : ISports;
-    batch : IBatch;
+    userId : IUser;
+    sportsId : ISports;
+    batchId : IBatch;
     paymentStatus : number;
 }

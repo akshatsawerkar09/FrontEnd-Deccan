@@ -10,10 +10,13 @@
 
         <span *ngIf="user.userRole == 'USER'">
             <a mat-button routerLink="userDashboard">{{user.userName}}</a>
+            <a mat-button routerLink="appliedBatches">Applied Batches</a>
+            <a mat-button routerLink="approvedBatches">Approved Batches</a>
+            <a mat-button routerLink="rejectedBatches">Rejected Batches</a>
+            <a mat-button routerLink="membership">Become A Member</a>
         </span>
 
         <span *ngIf="user.userRole == 'MANAGER'">
-            <a mat-button routerLink="managerDashboard">{{user.userName}}</a>
             <a mat-button routerLink="manageBatches">Manage Batches</a>
             <a mat-button routerLink="manageEnrollment">Manage Enrollment</a>
             <a mat-button routerLink="managerDashboard">{{user.userName}}</a>

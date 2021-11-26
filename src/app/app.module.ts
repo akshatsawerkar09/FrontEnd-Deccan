@@ -35,6 +35,9 @@ import { AddManagerComponent } from './components/add-manager/add-manager.compon
 import {MatListModule} from '@angular/material/list';
 import { UpdateBatchComponent } from './components/update-batch/update-batch.component';
 import { ManageEnrollmentComponent } from './components/manage-enrollment/manage-enrollment.component';
+import { ApprovedBatchesComponent } from './components/approved-batches/approved-batches.component';
+import { RejectedBatchesComponent } from './components/rejected-batches/rejected-batches.component';
+import { MembershipComponent } from './components/membership/membership.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { ManageEnrollmentComponent } from './components/manage-enrollment/manage
     HomepageComponent,
     AddManagerComponent,
     UpdateBatchComponent,
-    ManageEnrollmentComponent
+    ManageEnrollmentComponent,
+    ApprovedBatchesComponent,
+    RejectedBatchesComponent,
+    MembershipComponent
   ], 
   imports: [
     BrowserModule,

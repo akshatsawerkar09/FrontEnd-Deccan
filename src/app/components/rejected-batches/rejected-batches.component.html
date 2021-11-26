@@ -1,0 +1,13 @@
+<p>rejected-batches works!</p>
+<table>
+    <tr *ngFor="let rejectedBatch of rejectedBatches">
+        <span *ngIf="rejectedBatch.enrolledStatus == 2">
+            <td>{{rejectedBatch.sportsId.sportsName}}</td>
+            <td>{{rejectedBatch.batchId.batchName}} </td>
+            <td>{{rejectedBatch.batchId.coachName}} </td>
+            <td>{{rejectedBatch.batchId.startTime}} </td>
+            <td>{{rejectedBatch.batchId.endTime}} </td>
+            <td>{{rejectedBatch.sportsId.managerId.userName}} </td>
+        </span>
+    </tr>
+  </table>

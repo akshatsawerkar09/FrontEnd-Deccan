@@ -20,11 +20,11 @@
                     <p>{{batch.sportsId.sportsName}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <div *ngIf="batch.offer" else elsePart>
-                        <h2>Woohoo !!!!!!! we are having an offer going on</h2>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{batch.sportsId.membersCharge - batch.sportsId.membersCharge }}  </button>
+                    <div *ngIf="batch.offer; else elsePart">
+                        <h2>Woohoo !!!!!!! we are having an offer going on</h2> <h1>{{batch.offer}}</h1>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{ batch.sportsId.membersCharge - batch.sportsId.membersCharge * batch.discountOffered / 100}}  </button>
                         <br><br>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}} to {{batch.sportsId.nonMembersCharge - batch.sportsId.nonMembersCharge * 0.1  }}  </button>
+                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}} to {{batch.sportsId.nonMembersCharge - batch.sportsId.nonMembersCharge * batch.discountOffered / 100  }}  </button>
                     </div>
 
                     <ng-template #elsePart>

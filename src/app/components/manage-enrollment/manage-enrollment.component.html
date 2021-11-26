@@ -1,1 +1,16 @@
 <p>manage-enrollment works!</p>
+<table>
+    <tr *ngFor="let enrollRequest of enrollRequests">
+        <span *ngIf="enrollRequest.enrolledStatus == 0">
+            <td>{{enrollRequest.userId.userName}} </td>
+            <td>{{enrollRequest.sportsId.sportsName}}</td>
+            <td>{{enrollRequest.batchId.batchName}} </td>
+            <td>{{enrollRequest.batchId.coachName}} </td>
+            <td>{{enrollRequest.batchId.startTime}} </td>
+            <td>{{enrollRequest.batchId.endTime}} </td>
+            <td>{{enrollRequest.sportsId.managerId.userName}} </td>
+            <td><button class="btn btn-success" (click)="approveRequest(enrollRequest.enrolledId)" >Approve</button></td>
+            <td><button class="btn btn-danger" (click)="rejectRequest(enrollRequest.enrolledId)" >Reject</button></td>
+        </span>
+    </tr>
+</table>

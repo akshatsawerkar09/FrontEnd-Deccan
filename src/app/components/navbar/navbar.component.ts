@@ -10,7 +10,9 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-      sessionStorage.setItem( "user" , this.user );
+     // sessionStorage.setItem( "user" , this.user );
+
+     sessionStorage['user' ] = JSON.stringify( this.user );
   }
 
   user : any ={
@@ -22,7 +24,7 @@ export class NavbarComponent implements OnInit {
     password : "mark",
     phoneNumber : "123456789" ,
     userName : "mark",
-    userRole : "MANAGER",
+    userRole : "USER",
 
   }
 

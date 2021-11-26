@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { EnrolledSportsService } from 'src/app/utility/enrolled-sports.service';
+import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
 
 
 @Component({
@@ -11,37 +13,27 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class AppliedBatchesComponent implements OnInit {
 
+  userId : number = 1;
+
+  appliedBatches!: IEnrolledSports[];
+
+  constructor(private _enrollService : EnrolledSportsService)
+  {
+      this._enrollService.getEnrolledListByUser(this.userId).subscribe(
+        data => {
+          console.log(data);
+          this.appliedBatches = data;
+        }
+      )
+  }
+
   ngOnInit(): void {
+
   }
 
-  batches : any[] = [
-    {
-      batchId : 1 ,
-      batchType : "Morning" ,
-      sports : "Chess" ,
-      fees : "500"
-    }
-  ]
-
-  //displayedColumns: string[] = ['position', 'name' , 'weight', 'symbol' , 'actions'];
   
-  @ViewChild(MatSort) sort:MatSort | undefined;
- 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit']
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-
-  dataSource = new MatTableDataSource(this.batches);
-
-  constructor() {
-
-
-  }
-
-  ngAfterViewInit() {
-  //  this.dataSource.sort = this.sort;
-  }
+  
 
 }
 

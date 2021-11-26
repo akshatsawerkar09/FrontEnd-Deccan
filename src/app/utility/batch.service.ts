@@ -12,8 +12,12 @@ export class BatchService {
 
   constructor(private _http :  HttpClient) { }
 
-  getAllBatches(sportsId : number): Observable<IBatch[]>{
-    return this._http.get<IBatch[]>(this.baseUrl + '/getManagerBatches/'+sportsId);
+  getManagerBatches(sportsId : number): Observable<IBatch[]>{
+    return this._http.get<IBatch[]>( this.baseUrl + '/getManagerBatches/' + sportsId);
+  }
+
+  getBatchesByUser(userId : number , sportsId : number): Observable<IBatch[]>{
+    return this._http.get<IBatch[]>('http://localhost:8080/user/getBatchesByUser/'+userId + '/' + sportsId);
   }
 
   getBatchById(batchId : number): Observable<IBatch>{
