@@ -1,0 +1,147 @@
+<!-- <div class="body" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="30" >
+     
+       
+      <div class="row text-center ">
+      <form [FormGroup]="batchesForm"> 
+        <div class="col-md-6 ">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label style="font-size: 17px;" >SportsName</mat-label>
+            <input matInput style="font-size: 17px;"  class="form-control" formControlName="SportsName"  placeholder="Enter here">
+          </mat-form-field>
+        </div> 
+       <span style="color:red" *ngIf="SportsName && SportsName.invalid && SportsName.touched">SportsName is required</span>   
+            <div class="col-md-6 " >
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label style="font-size: 17px;">SportsCategory</mat-label>
+                        <mat-select [formControl]="selectedFW" class="form-control" formControlName="SportsCategory">
+                            <mat-option *ngFor="let framwork of frameworks" [value]="framwork">
+                            {{ framwork }}
+                           </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+                </div>
+         <span style="color:red" *ngIf="SportsCategory && SportsCategory.invalid && SportsCategory.touched">SportsCategory is required</span> 
+              <div class="col-md-6">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label style="font-size: 17px;">ManagerId</mat-label>
+                        
+                        <mat-select [formControl]="selectedFN" class="form-control" formControlName="ManagerId">
+                            <mat-option *ngFor="let Manager of Managers" [value]="Manager ">
+                            {{ Manager  }}
+                           </mat-option>
+                          </mat-select>
+  
+                        
+                      </mat-form-field>
+                    </div>
+                  <span style="color:red" *ngIf="ManagerId && ManagerId.invalid && ManagerId.touched">ManagerId is required</span> 
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label style="font-size: 17px;">MembersCharge</mat-label>
+                            <input matInput style="font-size: 17px;" class="form-control" formControlName="MembersCharge" placeholder="Enter here">
+                            
+                            
+                          </mat-form-field>
+                        </div>
+                      <span style="color:red" *ngIf="MembersCharge && MembersCharge.invalid && MembersCharge.touched">MembersCharge is required</span> 
+                    <div class="col-md-6">
+                        <mat-form-field  class="full-width" appearance="outline">
+                            <mat-label style="font-size: 17px;"> NonMembersCharge</mat-label>
+                            <input matInput style="font-size: 17px;" class="form-control" formControlName="NonMembersCharge" placeholder="Enter here">
+                            
+                            
+                          </mat-form-field>
+                        </div>
+                     <span style="color:red" *ngIf="NonMembersCharge && NonMembersCharge.invalid && NonMembersCharge.touched">NonMembersChargeis required</span>  
+                     
+                           <br>
+                            <button [disabled]="batchesForm.invalid" mat-raised-button style="background-color:lightseagreen; font-size: 22px;" >Upload</button> 
+                       
+                           
+       </form> 
+          </div>      
+          
+    </mat-card>
+  </div>    
+
+
+<select formControlName="managerId" id="managerId">
+        <option *ngFor="let manager of managers; let i = index" [value]="manager[i].userId">
+          {{manager[i].userName}}
+        </option>
+      </select>
+ <mat-select class="form-control" formControlName="sportsCategory" >
+                <mat-option>Indoor</mat-option>
+                <mat-option>Outdoor</mat-option>
+            </mat-select>
+
+            <mat-form-field class="full-width" appearance="outline">
+        <mat-label style="font-size: 17px;">SportsCategory</mat-label>
+        
+    </mat-form-field>
+-->
+
+<p>Manage sports works !</p>
+<form [formGroup] = "sportsForm" (ngSubmit)="addSports(sportsForm)">
+
+    <div class="form-group">
+        <label>Sports Name : </label>
+        <input type="text" id="sportsName" name="sportsName" formControlName="sportsName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['sportsName'].hasError('required') && sportsForm.controls['sportsName'].touched">Sports Name is required</div>
+    </div>
+
+    <select name="sportsCategory" formControlName="sportsCategory">
+        <option value="INDOOR">indoor</option>
+        <option value="OUTDOOR">outdoor</option>
+    </select>
+
+
+
+      <div class="form-group">
+        <label>Membership Charge : </label>
+        <input type="text" id="membersCharge" name="membersCharge" formControlName="membersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['membersCharge'].hasError('required') && sportsForm.controls['membersCharge'].touched">Membership charge  is required</div>
+      </div>
+
+      <div class="form-group">
+        <label>Non Membership Charge : </label>
+        <input type="text" id="nonMembersCharge" name="nonMembersCharge" formControlName="nonMembersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['nonMembersCharge'].hasError('required') && sportsForm.controls['nonMembersCharge'].touched">Non Membership charge  is required</div>
+      </div>
+
+    <div *ngIf= "managers.length == 0 else elsePart">
+        <h2 style="color: red;">No Managers are Idel as of now</h2>
+        <button class="btn btn-success" type="submit" disabled>Submit</button>
+    </div>
+    <ng-template #elsePart>
+        <select name="managerId" formControlName="managerId" >
+          <option [value]="manager.userId" *ngFor="let manager of managers" >{{manager.userName}}</option>
+        </select>
+      <div class="error"  class="text-danger" *ngIf="sportsForm.controls['managerId'].hasError('required') && sportsForm.controls['managerId'].touched">Manager Name is required</div>
+      <button class="btn btn-success" type="submit">Submit</button>
+    </ng-template>
+
+      
+</form>
+
+<table>
+    <tr>
+        <th>Sports Name</th>
+        <th>Sports Type</th>
+        <th>Membership Charge</th>
+        <th>Non Membership Charge</th>
+        <th>Managed By</th>
+    </tr>
+    <tr>
+    <div *ngFor="let sport of sports">
+        <td>{{sport.sportsName}}</td>
+        <td>{{sport.sportsCategory}}</td>
+        <td>{{sport.membersCharge}}</td>
+        <td>{{sport.nonMembersCharge}}</td>
+        <td>{{sport.managerId.userName}}</td>
+        <td><button class="btn btn-primary" (click)="updateSports(sport.sportsId)" >Update</button></td>
+        <td><button class="btn btn-danger" (click)="deleteSports(sport.sportsId)" >Delete</button></td>
+    </div>
+    </tr>
+</table>
