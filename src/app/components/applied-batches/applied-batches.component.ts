@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { EnrolledSportsService } from 'src/app/utility/enrolled-sports.service';
 import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
+import { IUser } from 'src/app/utility/IUser';
 
 
 @Component({
@@ -13,22 +14,24 @@ import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
 })
 export class AppliedBatchesComponent implements OnInit {
 
-  userId : number = 1;
+  user!: IUser;
 
   appliedBatches!: IEnrolledSports[];
 
   constructor(private _enrollService : EnrolledSportsService)
   {
-      this._enrollService.getEnrolledListByUser(this.userId).subscribe(
-        data => {
-          console.log(data);
-          this.appliedBatches = data;
-        }
-      )
+      
   }
 
   ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage['user']);
 
+    this._enrollService.getEnrolledListByUser(this.user.userId).subscribe(
+      data => {
+        console.log(data);
+        this.appliedBatches = data;
+      }
+    )
   }
 
   

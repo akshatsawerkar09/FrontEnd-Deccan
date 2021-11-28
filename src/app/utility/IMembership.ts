@@ -1,10 +1,10 @@
 import { IUser } from "./IUser";
 
-export  interface IMembershihp{
+export  interface IMembership{
     membershipId  : number;
     membershipType  : string;
     regDate : string;
-    endDate : string;
+    endDate : Date;
     costPaid : number;
     userId : IUser;
 }

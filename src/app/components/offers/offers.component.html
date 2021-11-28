@@ -1,0 +1,38 @@
+<p>offers works!</p>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let offer of batchLikeCommentDto ">
+            <mat-card class="mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title>
+                        {{offer.batch.batchName}}<br>
+                        {{offer.batch.offer}}<br>
+                        {{offer.batch.discountOffered}} % Off 
+                    </mat-card-title>
+                </mat-card-header>
+                <!--<img mat-card-image [src]="sport.image"> -->
+                <mat-card-content>
+                    Enroll as a Member : {{ offer.batch.sportsId.membersCharge}} to {{ offer.batch.sportsId.membersCharge - offer.batch.sportsId.membersCharge * offer.batch.discountOffered / 100}} 
+                    <br>
+                    Enroll as a Non Member : {{ offer.batch.sportsId.nonMembersCharge}} to {{ offer.batch.sportsId.nonMembersCharge - offer.batch.sportsId.nonMembersCharge * offer.batch.discountOffered / 100  }}
+                </mat-card-content>
+                <mat-card-actions>
+                    {{offer.likes.length}}
+                    <button (click)="addLike()" *ngIf="offer.likeStatus" style="background-color: skyblue;">UNLIKE</button>
+                    <button  (click)="removeLike()" *ngIf="!offer.likeStatus">LIKE</button>
+                    <div *ngFor="let comments of offer.comments">
+                        <p>{{comments.userId.userName}} : {{comments.comment}}</p>
+                    </div>
+                    <form [formGroup] = "commentForm" (ngSubmit)="addComment(commentForm)">
+                        <div class="form-group">
+                            <label>Comment : </label>
+                            <input type="text" id="comment" name="comment" formControlName="comment" class="form-control">
+                            <div class="error"  class="text-danger" *ngIf="commentForm.controls['comment'].hasError('required') && commentForm.controls['comment'].touched">Comment is required</div>
+                        </div>
+                        <button class="btn btn-success" type="submit">POST</button>
+                    </form>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+     </div>
+</div>

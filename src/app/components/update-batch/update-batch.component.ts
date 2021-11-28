@@ -41,6 +41,8 @@ export class UpdateBatchComponent implements OnInit {
       data => {
         this.existingBatch = data;
         console.log(this.existingBatch);
+        console.log(this.existingBatch.coachName);
+        //this.loadForm();
         this.batchForm= new FormGroup({
           batchName:new FormControl(this.existingBatch.batchName,[Validators.required]),
           coachName:new FormControl(this.existingBatch.coachName,[Validators.required]),
@@ -51,12 +53,28 @@ export class UpdateBatchComponent implements OnInit {
           discountOffered : new FormControl(this.existingBatch.discountOffered)
         });
       }
+      
     )
 
     
 
   }
 
+/*  loadForm()
+  {
+    console.log("inside load form");
+    console.log(this.existingBatch);
+    this.batchForm= new FormGroup({
+      batchName:new FormControl(this.existingBatch.batchName,[Validators.required]),
+      coachName:new FormControl(this.existingBatch.coachName,[Validators.required]),
+      startTime:new FormControl(this.existingBatch.startTime,[Validators.required]),
+      endTime:new FormControl(this.existingBatch.endTime, [Validators.required]),
+      batchStrength: new FormControl(this.existingBatch.batchStrength , [Validators.required]),
+      offers : new FormControl(this.existingBatch.offer),
+      discountOffered : new FormControl(this.existingBatch.discountOffered)
+    });
+  }
+*/
   updateBatch(batchForm : FormGroup)
   {
       this.existingBatch = batchForm.value;

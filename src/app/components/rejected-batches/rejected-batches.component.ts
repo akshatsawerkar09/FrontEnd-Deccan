@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrolledSportsService } from 'src/app/utility/enrolled-sports.service';
 import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
+import { IUser } from 'src/app/utility/IUser';
 
 @Component({
   selector: 'app-rejected-batches',
@@ -9,22 +10,24 @@ import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
 })
 export class RejectedBatchesComponent implements OnInit {
 
-  userId : number = 1;
+  user!: IUser;
 
   rejectedBatches!: IEnrolledSports[];
 
   constructor(private _enrollService : EnrolledSportsService) {
 
-    this._enrollService.getEnrolledListByUser(this.userId).subscribe(
+   }
+
+  ngOnInit(): void {
+
+    this.user = JSON.parse(sessionStorage['user']);
+
+    this._enrollService.getEnrolledListByUser(this.user.userId).subscribe(
       data => {
         console.log(data);
         this.rejectedBatches = data;
       }
     )
-
-   }
-
-  ngOnInit(): void {
   }
 
 }

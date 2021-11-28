@@ -38,6 +38,15 @@ import { ManageEnrollmentComponent } from './components/manage-enrollment/manage
 import { ApprovedBatchesComponent } from './components/approved-batches/approved-batches.component';
 import { RejectedBatchesComponent } from './components/rejected-batches/rejected-batches.component';
 import { MembershipComponent } from './components/membership/membership.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { ActivateAccountComponent } from './components/activate-account/activate-account.component';
+import { RenewMembershipComponent } from './components/renew-membership/renew-membership.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { LoginOtpComponent } from './components/login-otp/login-otp.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { OffersComponent } from './components/offers/offers.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +67,15 @@ import { MembershipComponent } from './components/membership/membership.componen
     ManageEnrollmentComponent,
     ApprovedBatchesComponent,
     RejectedBatchesComponent,
-    MembershipComponent
+    MembershipComponent,
+    LoginComponent,
+    LogoutComponent,
+    ActivateAccountComponent,
+    RenewMembershipComponent,
+    PaymentComponent,
+    LoginOtpComponent,
+    RegistrationComponent,
+    OffersComponent
   ], 
   imports: [
     BrowserModule,
@@ -80,7 +97,8 @@ import { MembershipComponent } from './components/membership/membership.componen
     HttpClientModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

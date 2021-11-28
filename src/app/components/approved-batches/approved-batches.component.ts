@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EnrolledSportsService } from 'src/app/utility/enrolled-sports.service';
 import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
+import { IUser } from 'src/app/utility/IUser';
 
 @Component({
   selector: 'app-approved-batches',
@@ -9,11 +11,11 @@ import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
 })
 export class ApprovedBatchesComponent implements OnInit {
 
-  userId : number = 1;
+  user!: IUser;
 
   approvedBatches!: IEnrolledSports[];
 
-  constructor(private _enrollService : EnrolledSportsService) { 
+  constructor(private _enrollService : EnrolledSportsService , private _router : Router) { 
 
     
   }
@@ -22,7 +24,9 @@ export class ApprovedBatchesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._enrollService.getEnrolledListByUser(this.userId).subscribe(
+    this.user = JSON.parse(sessionStorage['user']);
+
+    this._enrollService.getEnrolledListByUser(this.user.userId).subscribe(
       data => {
         console.log(data);
         this.approvedBatches = data;
@@ -30,7 +34,7 @@ export class ApprovedBatchesComponent implements OnInit {
     )
   }
 
-  payment(enrolledId : number)
+/*  payment(enrolledId : number)
   {
     console.log(enrolledId);
     this._enrollService.payment(enrolledId).subscribe(
@@ -38,7 +42,12 @@ export class ApprovedBatchesComponent implements OnInit {
         console.log("payment done");
       }
     )
-    window.location.reload();
+   // window.location.reload();
+   this.ngOnInit();
   }
-
+*/
+  payment(enrolledId : any)
+  {
+    this._router.navigate(['/payment/'+enrolledId]);
+  }
 }

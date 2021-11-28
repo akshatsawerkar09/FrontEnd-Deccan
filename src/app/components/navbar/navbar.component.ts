@@ -7,28 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  user : any ={
+    userRole : "",
+  }
+
   constructor() { }
 
   ngOnInit(): void {
      // sessionStorage.setItem( "user" , this.user );
 
-     sessionStorage['user' ] = JSON.stringify( this.user );
-  }
+     //sessionStorage['user' ] = JSON.stringify( this.user );
 
-  user : any ={
-    userId : 1 ,
-    address : "pune" ,
-    email : "mark@gmail.com",
-    gender : "MALE",
-    loginAttempt : 0,
-    password : "mark",
-    phoneNumber : "123456789" ,
-    userName : "mark",
-    userRole : "USER",
+     this.user = JSON.parse(sessionStorage['user']);
+    console.log(this.user);
 
   }
-
-
 
   
 }

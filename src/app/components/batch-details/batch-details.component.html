@@ -1,5 +1,19 @@
 <p>batch-details works!</p>
 <h2>You have selected {{sportsId}}</h2>
+<div *ngIf="renewReminder">
+    <div class="jumbotron">
+        <hr class="my-4">
+        <h1 class="display-4">Hey, {{user.userName}}</h1>
+        <p class="lead">Your membership ends on {{membership.endDate}} , You have only {{remainingDays}} Days left</p>
+        <p class="lead">
+            <a class="btn btn-primary" routerLink = "/renewMembership">Renew Membership</a>
+         <!--  <button class="btn btn-primary" (click)="navigateToRenew()")></button> -->
+        </p>
+        <hr class="my-4">
+      </div>
+</div>
+
+
 <div class="content">
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let batch of batches ">
@@ -13,27 +27,54 @@
                 <mat-card-content>
                     <p>{{batch.batchStrength}}</p>
                     <p>{{batch.coachName}}</p>
-                    <p>offer : {{batch.offer}}</p>
-                    <p>{{batch.discountOffered}}</p>
                     <p>{{batch.startTime}}</p>
                     <p>{{batch.endTime}}</p>
                     <p>{{batch.sportsId.sportsName}}</p>
                 </mat-card-content>
+                <span *ngIf="user.userRole == 'USER' else adminManagerView">
                 <mat-card-actions>
                     <div *ngIf="batch.offer; else elsePart">
                         <h2>Woohoo !!!!!!! we are having an offer going on</h2> <h1>{{batch.offer}}</h1>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{ batch.sportsId.membersCharge - batch.sportsId.membersCharge * batch.discountOffered / 100}}  </button>
-                        <br><br>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}} to {{batch.sportsId.nonMembersCharge - batch.sportsId.nonMembersCharge * batch.discountOffered / 100  }}  </button>
+                        <p>offer : {{batch.offer}}</p>
+                        <p>{{batch.discountOffered}}</p>
+                            <div *ngIf="membership; else notMember">
+                                <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{ batch.sportsId.membersCharge - batch.sportsId.membersCharge * batch.discountOffered / 100}}  </button>
+                            </div>
+                            <ng-template #notMember>
+                                <button mat-raised-button disabled (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} to {{ batch.sportsId.membersCharge - batch.sportsId.membersCharge * batch.discountOffered / 100}}  </button>
+                                <br><br>
+                                <h2>Become an Member to enjoy perks and enjoy special discount </h2>
+                                <a class="btn btn-primary" routerLink = "/membership">Become a Member</a>
+                                <br><br>
+                                <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}} to {{batch.sportsId.nonMembersCharge - batch.sportsId.nonMembersCharge * batch.discountOffered / 100  }}  </button>
+                            </ng-template>
                     </div>
 
                     <ng-template #elsePart>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}} </button>
-                        <br><br>
-                        <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}}</button>
+                        <div *ngIf="membership; else notMember">
+                            <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}}</button>
+                        </div>
+                        <ng-template #notMember>
+                            <button mat-raised-button disabled (click)="enrollUser(batch.batchId)" color="primary">Enroll as a Member : {{ batch.sportsId.membersCharge}}  </button>
+                            <br><br>
+                            <h2>Become an Member to enjoy perks and enjoy special discount </h2>
+                            <a class="btn btn-primary" routerLink = "/membership">Become a Member</a>
+                            <br><br>
+                            <button mat-raised-button (click)="enrollUser(batch.batchId)" color="primary">Enroll Now : {{batch.sportsId.nonMembersCharge}}  </button>
+                        </ng-template>
                     </ng-template>
                     
-                </mat-card-actions>
+                    </mat-card-actions>
+                </span>
+                <ng-template #adminManagerView>
+                   <p>{{ batch.sportsId.membersCharge}}</p>
+                    <p>{{batch.sportsId.nonMembersCharge}}</p>
+                    <div *ngIf="batch.offer">
+                        <h2>Woohoo !!!!!!! we are having an offer going on</h2>
+                        <p>offer : {{batch.offer}}</p>
+                        <p>{{batch.discountOffered}}</p>
+                    </div>
+                </ng-template>
             </mat-card>
         </div>
      </div>

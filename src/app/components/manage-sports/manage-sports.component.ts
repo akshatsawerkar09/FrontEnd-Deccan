@@ -52,9 +52,6 @@ export class ManageSportsComponent implements OnInit {
         console.log(this.sports);
       }
     )
-
-
-    
   }
 
   
@@ -111,11 +108,11 @@ export class ManageSportsComponent implements OnInit {
       data => {
         console.log(this.sportsObj);
         console.log("sports deleted");
-      
-        
+       
       }
     )    
-    window.location.reload();
+   window.location.reload();
+   //this.ngOnInit();  
    
   }
 

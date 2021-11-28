@@ -41,4 +41,8 @@ export class BatchService {
     return this._http.put<IBatch>(this.baseUrl + '/updateBatches/',
     batch, httpOptions);
   }
+
+  getOffers():Observable<IBatch[]>{
+    return this._http.get<IBatch[]>("http://localhost:8080/user" + '/getOffers/');
+  }
 }

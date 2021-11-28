@@ -1,8 +1,127 @@
-<div *ngIf="user.userRole != '' else elseBlock" >
+<div *ngIf="user.userRole != '' && user.activateStatus == true ; else elseBlock" >
     <mat-toolbar color="primary" >
         <span>
             Deccan Sports Club
         </span>
+    
+        <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+
+
+        <span *ngIf="user.userRole == 'USER'">
+            <a mat-button routerLink="userDashboard">{{user.userName}}</a>
+            <a mat-button routerLink="appliedBatches">Applied Batches</a>
+            <a mat-button routerLink="approvedBatches">Approved Batches</a>
+            <a mat-button routerLink="rejectedBatches">Rejected Batches</a>
+            <a mat-button routerLink="membership">Become A Member</a>
+            <a mat-button routerLink="offers">Offers</a>
+        </span>
+
+        <span *ngIf="user.userRole == 'MANAGER'">
+            <a mat-button routerLink="manageBatches">Manage Batches</a>
+            <a mat-button routerLink="manageEnrollment">Manage Enrollment</a>
+            <a mat-button routerLink="managerDashboard">{{user.userName}}</a>
+        </span>
+        
+        <span *ngIf="user.userRole == 'ADMIN'">
+            <a mat-button routerLink="manageSports">Manage Sports</a>
+            <a mat-button routerLink="Add Manager">Add Manager</a>
+            <a mat-button routerLink="adminDashboard">{{user.userName}}</a>
+            <a mat-button routerLink="unlockAccounts">Unlock Accounts</a>
+        </span>
+
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs">Contact Us</a>
+
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="logout">Logout</a>
+    </mat-toolbar>
+</div>
+
+
+<ng-template #elseBlock>
+    <mat-toolbar color="primary">
+        <span>
+            Deccan Sports Club
+        </span>
+    
+        <a mat-button routerLink="home">Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs" >Contact Us</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="login" style="margin-right: 10px;">Login</a>
+        <a mat-raised-button color="accent" routerLink="Register">Sign Up</a>
+    </mat-toolbar>
+</ng-template>
+
+<!--
+
+<mat-carousel
+  timings="250ms ease-in"
+  [autoplay]="true"
+  [interval]="5000"
+  color="accent"
+  maxWidth="auto"
+  [proportion]="40"
+  slideHeight='100%'
+  [slides]="5"
+  [loop]="true"
+  [hideArrows]="false"
+  [hideIndicators]="true"
+  [useKeyboard]="true"
+  [useMouseWheel]="false"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; let i = index"
+    [image]="slide.image"
+    overlayColor="#00000040"
+    [hideOverlay]="false"
+  ></mat-carousel-slide>
+</mat-carousel>
+
+
+
+
+<ng-template #elsePart>
+    <mat-toolbar class="mat-elevation-z10" color="primary" fxLayout="row">
+        <span>DECCANSPORTSCLUB</span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex" fxHide.xs>
+            <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs" >Contact Us</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="login" style="margin-right: 10px;">Login</a>
+        <a mat-raised-button color="accent" routerLink="Register">Sign Up</a>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.gt-xs>
+            <a class="valign-center" mat-icon-button [matMenuTriggerFor]="menu" aria-label="additional links">
+                <mat-icon>more_vert</mat-icon>
+            </a>
+            <mat-menu #menu="matMenu">
+                <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs" >Contact Us</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="login" style="margin-right: 10px;">Login</a>
+        <a mat-raised-button color="accent" routerLink="Register">Sign Up</a>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+</ng-template>
+
+<mat-toolbar class="mat-elevation-z10" color="primary" fxLayout="row" >
+    <span>DECCANSPORTSCLUB</span>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex" fxHide.xs>
     
         <a mat-button routerLink="home" >Home</a>
         <a mat-button routerLink="sports">Sports</a>
@@ -34,55 +153,52 @@
 
         <div class="spacer"></div>
     
-        <a mat-raised-button color="accent" routerLink="Logout">Logout</a>
-    </mat-toolbar>
-</div>
-
-
-<ng-template #elseBlock>
-    <mat-toolbar color="primary">
-        <span>
-            Deccan Sports Club
-        </span>
+        <a mat-raised-button color="accent" routerLink="logout">Logout</a>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.gt-xs>
+        <a class="valign-center" mat-icon-button [matMenuTriggerFor]="menu" aria-label="additional links">
+            <mat-icon>more_vert</mat-icon>
+        </a>
+        <mat-menu #menu="matMenu">
+            <a mat-button routerLink="home" >Home</a>
+            <a mat-button routerLink="sports">Sports</a>
     
-        <a mat-button routerLink="home" >Home</a>
-        <a mat-button routerLink="sports">Sports</a>
-        <a mat-button routerLink="aboutUs" >About Us</a>
-        <a mat-button routerLink="contactUs" >Contact Us</a>
-        <div class="spacer"></div>
     
-        <a mat-raised-button color="accent" routerLink="Login" style="margin-right: 10px;">Login</a>
-        <a mat-raised-button color="accent" routerLink="Register">Sign Up</a>
-    </mat-toolbar>
-</ng-template>
-
-<!--
-
-<mat-carousel
-  timings="250ms ease-in"
-  [autoplay]="true"
-  [interval]="5000"
-  color="accent"
-  maxWidth="auto"
-  [proportion]="40"
-  slideHeight='100%'
-  [slides]="5"
-  [loop]="true"
-  [hideArrows]="false"
-  [hideIndicators]="true"
-  [useKeyboard]="true"
-  [useMouseWheel]="false"
-  orientation="ltr"
->
-  <mat-carousel-slide
-    #matCarouselSlide
-    *ngFor="let slide of slides; let i = index"
-    [image]="slide.image"
-    overlayColor="#00000040"
-    [hideOverlay]="false"
-  ></mat-carousel-slide>
-</mat-carousel>
+            <span *ngIf="user.userRole == 'USER'">
+                <a mat-button routerLink="userDashboard">{{user.userName}}</a>
+                <a mat-button routerLink="appliedBatches">Applied Batches</a>
+                <a mat-button routerLink="approvedBatches">Approved Batches</a>
+                <a mat-button routerLink="rejectedBatches">Rejected Batches</a>
+                <a mat-button routerLink="membership">Become A Member</a>
+            </span>
+    
+            <span *ngIf="user.userRole == 'MANAGER'">
+                <a mat-button routerLink="manageBatches">Manage Batches</a>
+                <a mat-button routerLink="manageEnrollment">Manage Enrollment</a>
+                <a mat-button routerLink="managerDashboard">{{user.userName}}</a>
+            </span>
+            
+            <span *ngIf="user.userRole == 'ADMIN'">
+                <a mat-button routerLink="manageSports">Manage Sports</a>
+                <a mat-button routerLink="Add Manager">Add Manager</a>
+                <a mat-button routerLink="adminDashboard">{{user.userName}}</a>
+                <a mat-button routerLink="unlockAccounts">Unlock Accounts</a>
+            </span>
+    
+            <a mat-button routerLink="aboutUs" >About Us</a>
+            <a mat-button routerLink="contactUs">Contact Us</a>
+    
+            <div class="spacer"></div>
+        
+            <a mat-raised-button color="accent" routerLink="logout">Logout</a>
+           
+        </mat-menu>
+    </div>
+</mat-toolbar>
 -->
+
+
+
 
 <router-outlet></router-outlet>
 

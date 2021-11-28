@@ -43,4 +43,8 @@ export class EnrolledSportsService {
     return this._http.put<IEnrolledSports>('http://localhost:8080/user/payment/' + enrollId,
      httpOptions);
   }
+
+  enrollRequest(enrolledId : number): Observable<IEnrolledSports>{
+    return this._http.get<IEnrolledSports>('http://localhost:8080/user/enrollRequest/' + enrolledId);
+  }
 }

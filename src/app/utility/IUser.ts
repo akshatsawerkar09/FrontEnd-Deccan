@@ -8,4 +8,6 @@ export interface IUser{
     phoneNumber : string;
     userName : string;
     userRole : string;
+    otp : number;
+    activateStatus : boolean;
 }

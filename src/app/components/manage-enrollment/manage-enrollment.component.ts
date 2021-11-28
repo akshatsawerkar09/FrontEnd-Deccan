@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrolledSportsService } from 'src/app/utility/enrolled-sports.service';
 import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
+import { ISports } from 'src/app/utility/ISports';
+import { IUser } from 'src/app/utility/IUser';
+import { SportsService } from 'src/app/utility/sports.service';
 
 @Component({
   selector: 'app-manage-enrollment',
@@ -9,18 +12,31 @@ import { IEnrolledSports } from 'src/app/utility/IEnrolledSports';
 })
 export class ManageEnrollmentComponent implements OnInit {
 
-  constructor(private enrollSportsService : EnrolledSportsService) { }
+  constructor(private enrollSportsService : EnrolledSportsService , private  _sportsService : SportsService) { }
 
-  sportsId : number = 1;
+  user!: IUser;
 
   enrollRequests!: IEnrolledSports[];
 
+  sports!: ISports;
+
   ngOnInit(): void {
-    this.enrollSportsService.getEnrollmentRequests(this.sportsId).subscribe(
-      data => {
+
+    this.user = JSON.parse(sessionStorage['user']);
+
+    this._sportsService.getSportsByManagerId(this.user.userId).subscribe(
+      data =>{
         console.log(data);
-        this.enrollRequests = data;
-        console.log(this.enrollRequests);
+        this.sports = data;
+
+        this.enrollSportsService.getEnrollmentRequests(this.sports.sportsId).subscribe(
+          data => {
+            console.log(data);
+            this.enrollRequests = data;
+            console.log(this.enrollRequests);
+          }
+        )
+
       }
     )
   }

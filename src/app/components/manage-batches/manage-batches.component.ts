@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BatchService } from 'src/app/utility/batch.service';
 import { IBatch } from 'src/app/utility/IBatch';
 import { ISports } from 'src/app/utility/ISports';
+import { IUser } from 'src/app/utility/IUser';
 import { SportsService } from 'src/app/utility/sports.service';
 
 @Component({
@@ -17,17 +18,19 @@ export class ManageBatchesComponent implements OnInit {
 
   batches : IBatch[] | undefined;
 
-  managerId : number = 3;
+  user!: IUser;
+
 
   sports!: ISports;
 
   batchObj !: IBatch;
 
-  sportsId : number = 1;
 
   ngOnInit(): void {
 
-    this._sportsService.getSportsByManagerId(this.managerId).subscribe(
+    this.user = JSON.parse(sessionStorage['user']);
+
+    this._sportsService.getSportsByManagerId(this.user.userId).subscribe(
       data =>{
         console.log(data);
         this.sports = data;

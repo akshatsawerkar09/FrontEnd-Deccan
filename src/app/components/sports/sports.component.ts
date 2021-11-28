@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ISports } from 'src/app/utility/ISports';
+import { IUser } from 'src/app/utility/IUser';
 import { SportsService } from 'src/app/utility/sports.service';
 
 @Component({
@@ -10,22 +11,31 @@ import { SportsService } from 'src/app/utility/sports.service';
 })
 export class SportsComponent implements OnInit {
 
+  allSports!: ISports[];
+
   sports!: ISports[];
+
+  user!: IUser;
 
   constructor(private _router : Router, private _sportsService  : SportsService) { }
 
   ngOnInit(): void {
     this._sportsService.getAllSports().subscribe(
       data =>  {
-          this.sports = data;
+          this.allSports = data;
+          console.log(this.allSports);
+          this.sports = this.allSports;
           console.log(this.sports);
       }
     )
 
-    console.log(this.user);
+     this.user = JSON.parse(sessionStorage['user']);
+
+   // console.log(this.user);
+    
   }
 
-  user = JSON.parse(sessionStorage['user']);
+ 
   
 
 
@@ -33,10 +43,11 @@ export class SportsComponent implements OnInit {
 
   outdoor! : any[];
 
-  all! : any[];
 
   showIndoor(): void
   {
+
+    this.sports = this.allSports;
     this.indoor = this.sports.filter(sport => sport.sportsCategory === "INDOOR");
     console.log(this.indoor);
      this.sports = this.indoor;
@@ -44,6 +55,7 @@ export class SportsComponent implements OnInit {
 
   showOutdoor():void
   {
+    this.sports = this.allSports;
     this.outdoor = this.sports.filter(sport => sport.sportsCategory === "OUTDOOR");
     console.log(this.outdoor);
     this.sports = this.outdoor;
@@ -51,10 +63,7 @@ export class SportsComponent implements OnInit {
 
   showAll():void
   {
-    this.all  = this.sports.filter(sports => sports.sportsCategory === "INDOOR || OUTDOOR");
-    console.log(this.all);
-    this.sports = this.all;
-    
+    this.sports = this.allSports;
   }
 
   showBatch(id : any)
