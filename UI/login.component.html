@@ -1,0 +1,50 @@
+<p>login works!</p>
+<form [formGroup] = "loginForm" (ngSubmit)="login(loginForm)">
+
+    <div class="form-group">
+        <label>User Name : </label>
+        <input type="text" id="userName" name="userName" formControlName="userName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched">User is required</div>
+    </div>
+
+    <div class="form-group">
+        <label>Password : </label>
+        <input type="text" id="password" name="password" formControlName="password" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+      </div>
+
+      <div *ngIf="errorCode" style="color: red;">
+            <div *ngIf="errorCode == 401">
+                Invalid Credentials 
+            </div>
+            <div *ngIf="errorCode == 403">
+                Login Attempt exceeded you have done 3 invalid logins
+            </div>
+      </div>
+
+      <button class="btn btn-success" type="submit">Submit</button>
+</form>
+
+<div *ngIf="showOtpArea != '' ">
+    <h2>Hey {{user.userName}} You have to activate your account first
+        We sent OTP to your registered email Id {{user.email}}
+
+        <form [formGroup] = "otpForm" (ngSubmit)="otp(otpForm)">
+            <div class="form-group">
+                <label>OTP : </label>
+                <input type="text" id="otp" name="otp" formControlName="otp" class="form-control">
+                <div class="error"  class="text-danger" *ngIf="otpForm.controls['otp'].hasError('required') && otpForm.controls['otp'].touched">OTP is required</div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Submit</button>
+
+            <div *ngIf="invalidOtp != ''">
+                <h2 style="color: red;">{{invalidOtp}}</h2>
+              </div>
+        </form>
+    </h2>
+
+</div>
+
+<h2>Login with OTP <a routerLink="/loginOtp">here</a></h2>
+<router-outlet></router-outlet>
