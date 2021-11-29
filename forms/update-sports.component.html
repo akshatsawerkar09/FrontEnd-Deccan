@@ -1,0 +1,55 @@
+<mat-card class="example-card">
+  <mat-card-content>
+      <h2>Update Sports</h2>
+<form [formGroup] = "sportsForm" (ngSubmit)="updateSports(sportsForm)" class="example-card" >
+ 
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Sport Name</mat-label>
+        <input  matInput type="text"   id="sportsName" name="sportsName" formControlName="sportsName" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['sportsName'].hasError('required') && sportsForm.controls['sportsName'].touched">Sports Name is required</div>
+ 
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Category</mat-label>
+    <mat-select>
+        <mat-option value="INDOOR">indoor</mat-option>
+        <mat-option value="OUTDOOR">outdoor</mat-option>
+    </mat-select>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="example-full-width">
+        
+        <input matInput type="text"  placeholder="Membership Charge" id="membersCharge" name="membersCharge" formControlName="membersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['membersCharge'].hasError('required') && sportsForm.controls['membersCharge'].touched">Membership charge  is required</div>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+       
+        <input matInput type="text" placeholder="Non Membership Charge"  id="nonMembersCharge" name="nonMembersCharge" formControlName="nonMembersCharge" class="form-control">
+        <div class="error"  class="text-danger" *ngIf="sportsForm.controls['nonMembersCharge'].hasError('required') && sportsForm.controls['nonMembersCharge'].touched">Non Membership charge  is required</div>
+     </mat-form-field>
+
+
+     <mat-form-field appearance="fill">
+        
+      <mat-select placeholder="manager name" name="managerId" formControlName="managerId" >
+        <mat-option [value]="manager.userId" *ngFor="let manager of managers" >{{manager.userName}}</mat-option>
+      </mat-select>
+    
+    <div class="error"  class="text-danger" *ngIf="sportsForm.controls['managerId'].hasError('required') && sportsForm.controls['managerId'].touched">Manager Name is required</div>
+    </mat-form-field>
+
+    <mat-card-content>
+      <mat-card-actions>
+    <button mat-raised-button color="primary"type="submit">Submit</button>
+    </mat-card-actions>
+    </mat-card-content>
+
+    </form>
+  </mat-card-content>
+</mat-card>
+
+

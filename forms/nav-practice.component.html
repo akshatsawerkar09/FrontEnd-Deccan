@@ -1,0 +1,44 @@
+
+<mat-toolbar color="info">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+      <h1>Dashboard</h1>
+      <span class="menu-spacer"></span>
+     
+    </mat-toolbar-row>
+  
+    
+  </mat-toolbar>
+  
+<mat-sidenav-container  class="example-container" >
+    <mat-sidenav #sidenav mode="side" opened role="navigation" >
+      <mat-nav-list >
+        <a mat-list-item [routerLink]="'/home'"> <mat-icon id="nav">home</mat-icon> Home </a>
+        <hr/>
+        <a mat-list-item [routerLink]="'/contacts'">  <mat-icon  id="nav">stars</mat-icon> Sports </a>
+        
+        <hr/>
+        
+        <a  mat-list-item [routerLink]="'/create-contact'"> <mat-icon  id="nav">assignment_ind</mat-icon> Accounts Details</a>
+        <hr/>
+        <a mat-list-item [routerLink]="'/activities'">  <mat-icon  id="nav">assessment</mat-icon> Reports</a>
+        <hr/>
+        <a mat-list-item [routerLink]="'accounts'"> <mat-icon  id="nav"> person </mat-icon> Profile </a>
+        <hr/>
+        <a mat-list-item [routerLink]="'/create-activity'">  <mat-icon  id="nav">help</mat-icon> Help</a>
+        <mat-divider></mat-divider>
+        <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item><mat-icon>close</mat-icon> Close</a>
+       
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color: #dedce7;" >
+      <div style="height: 80vh;">
+   
+        <router-outlet ></router-outlet>
+      </div>
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
+  

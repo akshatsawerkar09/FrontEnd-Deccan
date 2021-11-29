@@ -1,0 +1,66 @@
+
+    <mat-card class="example-card">
+        <mat-card-content>
+            <h2 >Update Batch</h2>
+
+        <!-- <button mat-raised-button >Update Batch</button> -->
+        
+    <form class="example-card" (ngSubmit)="updateBatch(batchForm)" >
+    
+           <mat-form-field class="example-full-width">
+           <input matInput placeholder="coachName" name="coachname"  required> 
+    
+             <div class="error"  class="text-danger" *ngIf="batchForm.controls['coachName'].hasError('required') && batchForm.controls['coachName'].touched">Coach Name is required</div> 
+            </mat-form-field>
+        
+            <mat-form-field appearance="fill">
+                <mat-label>Select Batch</mat-label>
+        <mat-select>
+            <mat-option  value="MORNING">morning</mat-option>
+            <mat-option value="AFTERNOON">afternoon</mat-option>
+            <mat-option value="EVENING">evening</mat-option>
+        </mat-select>
+    </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <mat-label>Start Time  </mat-label>
+                <input matInput type="time" id="startTime"  name="startTime" min="1:00" max="3:00" required>
+                <div class="error"  class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('required') && batchForm.controls['startTime'].touched">Start Time is required</div>
+                <div class="error" class="text-danger" *ngIf="batchForm.controls['startTime'].hasError('min')">Time Frame not allowed</div>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+                <mat-label>End Time  </mat-label>
+                <input matInput type="time" id="endTime"  name="endTime" min="01:00" max="03:00" required>
+                <div class="error"  class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('required') && batchForm.controls['endTime'].touched">End Time is required</div>
+                <div class="error" class="text-danger" *ngIf="batchForm.controls['endTime'].hasError('max')">Time Frame not allowed</div>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+              
+                <input matInput placeholder="Batch Strength " type="number" id="batchStrength" name="batchStrength" >
+                <div class="error"  class="text-danger" *ngIf="batchForm.controls['batchStrength'].hasError('required') && batchForm.controls['batchStrength'].touched">Batch Strength is required</div>
+         </mat-form-field>
+    
+         <mat-form-field class="example-full-width">
+               
+                <input matInput placeholder="Offers" type="text" id="offer" name="offer" >
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+               
+                <input matInput type="text" placeholder="Discount Offered" id="discountOffered" name="discountOffered" >
+          </mat-form-field>
+            <mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" >Submit</button>
+        </mat-card-actions>
+            </mat-card-content>
+    
+               
+    
+        
+    </form>
+    </mat-card-content>
+    </mat-card>
+    
+    

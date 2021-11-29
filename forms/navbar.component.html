@@ -1,0 +1,89 @@
+ 
+ <div  *ngIf="user.userName != '' else elseBlock" >
+    <mat-toolbar color="primary" *ngIf="user.userType == 'user'">
+        <span>
+            DeccanSportsClub
+        </span>
+    
+        <a mat-button routerLink="home" >Home</a>
+        <mat-form-field appearance="fill">
+            <mat-label>Favorite car</mat-label>
+            <select matNativeControl [(ngModel)]="selectedCar" name="car">
+              <option value="" selected></option>
+              <option *ngFor="let car of cars" [value]="car.value">
+                {{car.viewValue}}
+              </option>
+            </select>
+          </mat-form-field>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs">Contact Us</a>
+        <a mat-button routerLink="dashboard">{{user.userName}}</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="Logout">Logout</a>
+    </mat-toolbar>
+
+    <mat-toolbar color="primary" *ngIf="user.userType == 'manager'">
+        <span>
+            DeccanSportsClub
+        </span>
+    
+        <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="manageBatches">Manage Batches</a>
+        <a mat-button routerLink="batchEnrollment">Batch Enrollment</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs">Contact Us</a>
+        <a mat-button routerLink="dashboard">{{user.userName}}</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="Logout">Logout</a>
+    </mat-toolbar>
+
+    <mat-toolbar color="primary" *ngIf="user.userType == 'admin'">
+        <span>
+            DeccanSportsClub
+        </span>
+    
+        <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="manageSports">Manage Sports</a>
+        <a mat-button routerLink="Add Manager">Add Manager</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs">Contact Us</a>
+        <a mat-button routerLink="dashboard">{{user.userName}}</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="Logout">Logout</a>
+    </mat-toolbar>
+</div>
+<mat-sidenav-container>
+<ng-template #elseBlock>
+  
+    <mat-toolbar color="primary" >
+        <span>
+            Deccan Sports Club
+        </span>
+    
+        <a mat-button routerLink="home" >Home</a>
+        <a mat-button routerLink="sports">Sports</a>
+        <a mat-button routerLink="aboutUs" >About Us</a>
+        <a mat-button routerLink="contactUs" >Contact Us</a>
+        <div class="spacer"></div>
+    
+        <a mat-raised-button color="accent" routerLink="Login" style="margin-right: 10px;text-align: end;">Login</a>
+        <a mat-raised-button color="accent" routerLink="batches">Sign Up</a>
+        <a mat-raised-button  routerLink="nav"><mat-icon  btn-outline-light btn-floating  href="#!" role="button">menu</mat-icon></a>
+
+    </mat-toolbar>
+   
+</ng-template>
+<mat-sidenav-content>
+    <div >
+  <!-- <h1 style="text-align: center;">Hello User</h1> -->
+      <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-content>
+</mat-sidenav-container>
+
