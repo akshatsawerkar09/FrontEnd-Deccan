@@ -1,0 +1,52 @@
+
+ <mat-card class="example-card">
+   <h2>Feedback</h2>
+<form [formGroup]="formGroup" class="example-card">
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your email" [formControl]="emailField" required>
+      <mat-error *ngIf="emailField.invalid">{{ getErrorMessage(emailField) }}</mat-error>
+    </mat-form-field>
+  </div>
+  
+
+  <mat-form-field appearance="fill">
+    <mat-label>UI</mat-label>
+<mat-select>
+<mat-option  value="poor">poor</mat-option>
+<mat-option  value="average">average</mat-option>
+<mat-option value="good">good</mat-option>
+<mat-option value="excellent">excellent</mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>User Experience</mat-label>
+<mat-select>
+<mat-option  value="poor">poor</mat-option>
+<mat-option  value="average">average</mat-option>
+<mat-option value="good">good</mat-option>
+<mat-option value="excellent">excellent</mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Functionality</mat-label>
+<mat-select>
+<mat-option  value="poor">poor</mat-option>
+<mat-option  value="average">average</mat-option>
+<mat-option value="good">good</mat-option>
+<mat-option value="excellent">excellent</mat-option>
+</mat-select>
+</mat-form-field>
+
+
+<mat-form-field class="example-full-width">
+  <input matInput  type="text-area" placeholder="Enter your Suggessions"  >
+  
+</mat-form-field>
+<mat-card-content>
+  <mat-card-actions>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="formGroup.invalid">Submit Feedback</button>
+</mat-card-actions>
+</mat-card-content>
+</form>
+</mat-card>
