@@ -1,0 +1,56 @@
+<mat-card class="example-card">
+    <mat-card-content>
+        <h2>Sign Up</h2>
+<form [formGroup] = "userForm" (ngSubmit)="addUser(userForm)" class="example-card" >
+
+    <mat-form-field class="example-full-width">
+        <mat-label>User Name : </mat-label>
+        <input matInput type="text" id="userName" name="userName" formControlName="userName" class="form-control">
+    </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['userName'].hasError('required') && userForm.controls['userName'].touched">User is required</div>
+
+
+        <mat-form-field class="example-full-width">
+        <mat-label>Email Id : </mat-label>
+        <input matInput  type="email" id="email" name="email" formControlName="email" class="form-control">
+        </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['email'].hasError('required') && userForm.controls['email'].touched">Email is required</div>
+   
+
+        <mat-form-field class="example-full-width">
+        <mat-label>Password : </mat-label>
+        <input matInput type="password" id="password" name="password" formControlName="password" class="form-control">
+        </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['password'].hasError('required') && userForm.controls['password'].touched">Password is required</div>
+  
+
+        <mat-form-field class="example-full-width">
+        <mat-label>Phone Number : </mat-label>
+        <input matInput type="number" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" class="form-control">
+       </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['phoneNumber'].hasError('required') && userForm.controls['phoneNumber'].touched">Phone number is required</div>
+    
+        <mat-form-field class="example-full-width">
+        <mat-label>Address : </mat-label>
+        <input matInput type="text" id="address" name="address" formControlName="address" class="form-control">
+       </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['address'].hasError('required') && userForm.controls['address'].touched">Address is required</div>
+  
+
+        
+        <label>Gender</label>
+        <label class="radio-inline"> <input type="radio"  formControlName="gender" name="gender" value="MALE">Male</label>
+        <label class="radio-inline"> <input type="radio" formControlName="gender" name="gender" value="FEMALE">Female</label>
+        <div class="error"  class="text-danger" *ngIf="userForm.controls['gender'].hasError('required') && userForm.controls['gender'].touched">Address is required</div>
+ 
+        <div *ngIf="usernameNotAvailable != ''">
+            <h2 style="color: red;">Username is already taken</h2>
+      </div>
+      <mat-card-content>
+        <mat-card-actions>
+      <button class="btn btn-success" type="submit">Submit</button>
+      </mat-card-actions>
+      </mat-card-content>
+</form>
+</mat-card-content>
+</mat-card>
