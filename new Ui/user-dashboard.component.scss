@@ -1,0 +1,45 @@
+/* No CSS *//*# sourceMappingURL=nav-practice.component.css.map */
+mat-toolbar {
+    background: #c50475;
+    color: white;
+  }
+  h2:hover{
+    color: #c71a85;
+    
+   
+  }
+  h1{
+    font-family: fantasy;
+  }
+  
+ 
+  a:hover, a:active {
+     
+    
+   
+  
+    
+    
+    color: #a70b73;
+    
+   
+  
+  }
+
+  
+  
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgb(49, 37, 37);
+}
+mat-nav-list{
+    background-color:rgb(241, 238, 238);
+ width: 200px;
+ height: 600px;
+
+}
+#nav{
+    padding-left: 10px;
+    padding-right: 30px;
+}
