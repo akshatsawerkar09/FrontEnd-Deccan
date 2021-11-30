@@ -1,0 +1,31 @@
+<body><div id="main"><div id="i1" >
+<button mat-raised-button style="margin-right: 30px" color="primary" (click)="showIndoor()">Indoor</button>
+<button mat-raised-button style="margin-right: 30px" color="primary" (click)="showOutdoor()">Outdoor</button>
+<button mat-raised-button style="margin-right: 30px" class="btn btn-outline-primary" color="primary" (click)="showAll()">Show All</button>
+</div>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let sport of sports ">
+            <mat-card class="card text-black  mb-3"  >
+                <mat-card-header class="card text-white">
+                    <mat-card-title   style="font-family:fantasy">
+                        {{sport.sportsName}}
+                    </mat-card-title>
+                </mat-card-header>
+                <br/>
+                <!--<img mat-card-image [src]="sport.image"> -->
+                <mat-card-content>
+                    <h3 >Sports Category  : {{sport.sportsCategory}}</h3>
+                   <h3> Members Charge : ${{sport.membersCharge}}</h3>
+                    <h3>Non Members Charge : ${{sport.nonMembersCharge}}</h3>
+                    <h3>Managed By : {{sport.managerId.userName}}</h3>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button (click)="showBatch(sport.sportsId)" color="primary">Explore Batches</button>
+                    </mat-card-actions>
+            </mat-card>
+        </div>
+     </div>
+</div>
+</div>
+</body>

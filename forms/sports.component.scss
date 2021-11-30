@@ -1,0 +1,58 @@
+.content{
+    padding: 16px;
+}
+mat-card{
+    // background-color:  #2b272b;
+    background-color: white;
+    margin-top: 50px;
+   width: 100%;
+}
+mat-card-header{
+    background-color:rgb(54, 54, 148);
+    padding-top: 5px;
+    
+}
+mat-card-title {
+    margin-left: 50px;
+}
+#i1{
+    margin-left: 300px;
+    margin-top: 50px;
+    
+}
+
+button {
+    border: 0;
+    // border-radius: 20px;
+    color: white;
+    // background: #5f55af;
+    background:rgb(148, 148, 243);
+    // padding: 10px 15px 15px 10px;
+   text-transform: uppercase;
+    background: linear-gradient(to right, #f72585 50%, #5f55af 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition:all 2s ease;
+    size: 20px;
+    height: 50px;
+    
+   
+  }
+  
+button:hover {
+    background-position: left bottom;
+ }
+ #main{
+margin-left:200px;
+padding: auto;
+ }
+ body{
+    //  background-color: rgb(250, 192, 202);
+    background-color: #432a6d;
+ }
+h3{
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//    font-variant: small-caps;
+font-weight: 700;
+}
+  
