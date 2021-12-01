@@ -1,0 +1,39 @@
+
+mat-card{
+    background-color: rgb(186, 240, 247);
+    width: 500px;
+    height: 450px;
+    margin-left: 400px;
+    margin-top: 15vh;
+}
+
+.example-form {
+    min-width: 400px;
+    max-width: 100px;
+    
+
+  }
+  
+  .example-full-width {
+    width: 100%
+  }
+  h2{
+    margin-left: 100px;
+  font-family: fantasy;
+   
+  }
+  mat-divider{
+    background-color: rgb(49, 37, 37);
+   height: 3px;
+  }
+  button{
+     margin-left: 90px;
+   }
+   mat-card-header{
+       color: rgb(236, 89, 138);
+   }
+   h3{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ //    font-variant: small-caps;
+ font-weight: 700;
+ }

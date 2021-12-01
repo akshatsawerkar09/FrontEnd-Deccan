@@ -1,0 +1,61 @@
+<p>offers works!</p>
+<div class="content" >
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" >
+          <!-- *ngFor="let offer of batchLikeCommentDto " -->
+            <mat-card  class="example-form">
+              <h2>Exciting offers</h2>
+        <mat-divider></mat-divider>
+        <br>
+                <mat-card-header>
+                    <mat-card-title>
+                     <h3>{{offer.batch.batchName}} - {{offer.batch.sportsId.sportsName}}</h3><br>
+                        <h3>{{offer.batch.offer}}</h3><br>
+                        <h3>{{offer.batch.discountOffered}} % Off</h3> <br> 
+                       
+                    </mat-card-title>
+                </mat-card-header>
+              
+                <mat-card-content>
+                    <h3>Enroll as a Member : {{ offer.batch.sportsId.membersCharge}} to {{ offer.batch.sportsId.membersCharge - offer.batch.sportsId.membersCharge * offer.batch.discountOffered / 100}} </h3>
+                    <br>
+                   <h3> Enroll as a Non Member : {{ offer.batch.sportsId.nonMembersCharge}} to {{ offer.batch.sportsId.nonMembersCharge - offer.batch.sportsId.nonMembersCharge * offer.batch.discountOffered / 100  }} </h3>
+             
+               
+                  </mat-card-content>
+                  <mat-card-content>
+                <mat-card-actions>
+                    <h3>{{offer.likes.length}}</h3>
+                   
+                    <a (click)="removeLike(offer.batch.batchId)"  *ngIf="offer.likeStatus"   href="#"  style="color: red;"><mat-icon style="margin-left: 20px;">favorite_border</mat-icon></a>
+                    <a   (click)="addLike(offer.batch.batchId)"  *ngIf="!offer.likeStatus"  href="#" style="color: red;"><mat-icon style="margin-left: 90px;">favorite</mat-icon></a>
+                    
+                  </mat-card-actions>
+                </mat-card-content>
+                    <div  *ngFor="let comments of offer.comments"  >
+                      <!-- -->
+                      <h2>Comments</h2>
+                        <h3>{{comments.userId.userName}} : {{comments.comment}}</h3> 
+                      
+                    </div>
+                    <form [formGroup] = "commentForm" (ngSubmit)="addComment(commentForm , offer.batch.batchId)" class="example-form">
+                        <mat-form-field class="example-half-width" >
+                            <mat-label>Comment here </mat-label>
+                            <input  matInput type="text" id="comment" name="comment" formControlName="comment" class="form-control">
+                           
+                          <div class="error"  class="text-danger" *ngIf="commentForm.controls['comment'].hasError('required') && commentForm.controls['comment'].touched">Comment is required</div> 
+                          
+                          </mat-form-field>
+                          <a href="#" style="color: black;"><mat-icon style="margin-left: 20px;">send</mat-icon></a>
+                            <mat-card-content>
+                              <mat-card-actions>
+                      
+                         
+                              </mat-card-actions>
+                      </mat-card-content>
+                    </form>
+              
+            </mat-card>
+        </div>
+     </div>
+</div>
