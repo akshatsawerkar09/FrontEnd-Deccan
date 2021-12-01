@@ -1,0 +1,54 @@
+<p>login-otp works!</p>
+<mat-card class="example-form">
+<form [formGroup] = "loginForm" (ngSubmit)="login(loginForm)" class="example-form">
+
+   <mat-form-field class="example-full-width">
+       <br>
+        <mat-label>Username </mat-label>
+        <input  matInput type="text" id="userName" name="userName" formControlName="userName" class="form-control">
+   </mat-form-field>
+        <div class="error"  class="text-danger" *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched">Username is required</div>
+    
+
+      <div *ngIf="userNotFound != ''">
+            <h2 style="color: red;">{{userNotFound}}</h2>
+      </div>
+
+      <mat-card-content>
+        <mat-card-actions>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+</mat-card-actions>
+</mat-card-content>
+
+      <div *ngIf="inactiveAccount != ''">
+        <h2 style="color: red;">{{inactiveAccount}}</h2>
+        <h2>Login From here to activate your account <a routerLink="'/login' ">here</a></h2>
+      </div>
+      
+</form>
+
+<div *ngIf="showOtpArea != '' ">
+    <h2>Hello {{user.userName}} You have to activate your account first
+        We sent OTP to your registered email Id {{user.email}}
+
+        <form [formGroup] = "otpForm" (ngSubmit)="otp(otpForm)" class="example-form">
+          <mat-form-field class="example-full-width">
+                <label>OTP  </label>
+                <input matInput type="text" id="otp" name="otp" formControlName="otp" class="form-control">
+            </mat-form-field>
+                <div class="error"  class="text-danger" *ngIf="otpForm.controls['otp'].hasError('required') && otpForm.controls['otp'].touched">OTP is required</div>
+                <mat-card-content>
+                <mat-card-actions>
+
+            <button class="btn btn-success" type="submit">Submit</button>
+        </mat-card-actions>
+        </mat-card-content>
+        </form>
+    </h2>
+
+    <div *ngIf="invalidOtp != ''">
+        <h2 style="color: red;">{{invalidOtp}}</h2>
+      </div>
+</div>
+</mat-card>

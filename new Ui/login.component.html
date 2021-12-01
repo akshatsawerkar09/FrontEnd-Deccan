@@ -1,0 +1,137 @@
+<!-- 
+  
+  <div>
+  
+  <mat-card class="example-card" >
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+        </tr></table>
+      </form>
+     
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->
+
+
+  
+  
+  <!-- <div fxLayout="row" fxLayoutAlign="center center" class="login-main">
+    <mat-card >
+    <mat-card-header>
+      <mat-card-title>Login Page</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Email">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="password">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions text-align="end">
+      <button mat-raised-button color="primary">Login</button>
+    </mat-card-actions>
+    </mat-card>
+    </div>-->
+  
+   
+    <mat-card class="example-card" > 
+      <h2>Login</h2>
+     <form [formGroup] = "loginForm" (ngSubmit)="login(loginForm)" class="example-form">
+     
+       <mat-form-field class="example-full-width">
+           
+             <input matInput type="text"  placeholder="Username" id="userName" name="userName" formControlName="userName" class="form-control">
+          
+        </mat-form-field>
+           <div class="error"  class="text-danger" *ngIf="loginForm.controls['userName'].hasError('required') && loginForm.controls['userName'].touched">User Name is required</div>
+     
+        <mat-form-field class="example-full-width">
+             <!-- <mat-label>Password : </mat-label> -->
+             <input  matInput [type]="hide ? 'password' : 'text'" placeholder="Password" id="password" name="password" formControlName="password" class="form-control">
+             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+           </mat-form-field>
+           <div class="error"  class="text-danger" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+     
+           <div *ngIf="errorCode" style="color: red;">
+                 <div *ngIf="errorCode == 401">
+                     Invalid Credentials 
+                 </div>
+                 <div *ngIf="errorCode == 403">
+                     Login Attempt exceeded you have done 3 invalid logins
+                 </div>
+           </div>
+
+           
+           <label>
+            <input type="checkbox"   id="remberMe" name="remberMe"  >Remember me</label>
+         
+      
+
+       
+           <a routerLink=" '/forgetPwd" style="margin-left: 30px;">Forgot password ?</a>
+          
+         <mat-card-actions >
+           <button mat-raised-button  color="primary">Login</button>
+         </mat-card-actions>
+      
+         Login with OTP <a   routerLink=" '/loginOtp' ">here</a><br>
+         Don't have an account? <a routerLink=" '/register'">Sign Up</a> <br>
+       
+      
+       
+     </form>
+     </mat-card>
+     
+     <mat-card *ngIf="showOtpArea != '' " class="example-card" >
+         <h2>Hey {{user.userName}} You have to activate your account first
+             We sent OTP to your registered email Id {{user.email}}
+     
+             <form [formGroup] = "otpForm" (ngSubmit)="otp(otpForm)" class="example-card" >
+                 <mat-form-field class="form-group" class="example-card">
+                     <mat-label>OTP </mat-label>
+                     <input  matInput type="text"placeholder="otp" id="otp" name="otp" formControlName="otp" class="form-control">
+                     <div class="error"  class="text-danger" *ngIf="otpForm.controls['otp'].hasError('required') && otpForm.controls['otp'].touched">OTP is required</div>
+                </mat-form-field>
+                <mat-card-content>
+                 <mat-card-actions>
+                   <button mat-raised-button  color="primary">Submit</button>
+              
+                </mat-card-actions>
+               </mat-card-content>
+     
+                 <div *ngIf="invalidOtp != ''">
+                     <h2 style="color: red;">{{invalidOtp}}</h2>
+                   </div>
+               
+             </form>
+         </h2>
+     
+     
+     <div>
+     <h2>Login with OTP <a routerLink="/loginOtp">here</a></h2>
+    
+     </div>
+     </mat-card>
+    
+  
